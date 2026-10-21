@@ -89,7 +89,7 @@ if st.button("Recommend Crop"):
     recommendations = pd.DataFrame(
         {
             "Crop": model.classes_[top_3_indices],
-            "Model confidence": probabilities[top_3_indices],
+            "Model confidence": probabilities[top_3_indices]*100,
         }
     )
 
@@ -99,7 +99,7 @@ if st.button("Recommend Crop"):
         recommendations,
         hide_index=True,
         column_config={
-            "Model confidence": st.column_config.NumberColumn(format="%.2f%%")
+            "Model confidence (%)": st.column_config.NumberColumn(format="%.2f%%")
         },
     )
 
